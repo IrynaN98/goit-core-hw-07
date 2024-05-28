@@ -75,22 +75,19 @@ class AddressBook(UserDict):
         if name in self.data:
             del self.data[name]
 
-def get_upcoming_birthdays(self, days=7):
-    today = datetime.now().date()
-    upcoming_birthdays = []
-    for record in self.data.values():
-        if record.birthday:
-            next_birthday = record.birthday.value.replace(year=today.year)
-            if next_birthday < today:
-                next_birthday = next_birthday.replace(year=today.year + 1)
-            days_until_birthday = (next_birthday - today).days
-            if 0 <= days_until_birthday <= days:
-                congratulation_date = next_birthday.strftime("%d.%m.%Y")
-                upcoming_birthdays.append((record.name.value, congratulation_date))
-    return upcoming_birthdays
-
-
-               
+    def get_upcoming_birthdays(self, days=7):
+        today = datetime.now().date()
+        upcoming_birthdays = []
+        for record in self.data.values():
+            if record.birthday:
+                next_birthday = record.birthday.value.replace(year=today.year)
+                if next_birthday < today:
+                    next_birthday = next_birthday.replace(year=today.year + 1)
+                days_until_birthday = (next_birthday - today).days
+                if 0 <= days_until_birthday <= days:
+                    congratulation_date = next_birthday.strftime("%d.%m.%Y")
+                    upcoming_birthdays.append((record.name.value, congratulation_date))
+        return upcoming_birthdays
 
 def input_error(func):
     def inner(*args, **kwargs):
